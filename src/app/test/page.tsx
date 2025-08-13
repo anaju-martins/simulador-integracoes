@@ -6,8 +6,8 @@ import IntegrationCard from "@/components/IntegrationCard/IntegrationCard";
 export default function TestCardPage() {
   const mockData: Integration = {
     id: 1,
-    name: "Teste_Importacao",
-    documentType: "TD_Teste",
+    name: "A52_Buscar_Viagens",
+    documentType: "A52_Viagens",
     cron: "*/5 * * * *",
     stageStart: "1",
     stageEnd: "3",
