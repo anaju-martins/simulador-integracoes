@@ -48,7 +48,7 @@ export default function SimulationForm({ onGenerate }:{ onGenerate:(data: Simula
 
   return (
     <form onSubmit={handleSubmit(onGenerate)}>
-      <Stack spacing={1} sx={{ width: 252, mx: "auto", mt: 4 }}>
+      <Stack spacing={1} sx={{ width: 280, mx: "auto", bgcolor:"white", p:2, borderRadius:2, boxShadow:2 }}>
         <FormLabel sx={{ fontSize: "0.85rem", fontWeight: 600 }}>Data e Hora de Início</FormLabel>
         <TextField
           type="datetime-local"

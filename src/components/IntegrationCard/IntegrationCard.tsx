@@ -2,34 +2,12 @@
 import { Card, CardContent, CardActions, Typography, Box } from "@mui/material";
 import { Integration } from "@/types/integration";
 import { PencilSimpleIcon, XIcon } from "@phosphor-icons/react";
-
-const palette = [
-  "#89C08E", 
-  "#209E91", 
-  "#05668D", 
-  "#6497C6", 
-  "#213E52",  
-];
-
-function hashKey(key: string) {
-  let h = 0;
-  for (let i = 0; i < key.length; i++) h = (h << 5) - h + key.charCodeAt(i);
-  return Math.abs(h);
-}
-
-function pickBgColor(index?: number, stableKey?: string) {
-  if (typeof index === "number") {
-    return palette[index % palette.length];
-  }
-  const key = stableKey ?? Math.random().toString();
-  return palette[hashKey(key) % palette.length];
-}
-
+import { pickColorForIntegration } from "@/lib/colors";
 
 
 export default function IntegrationCard({ item, onEdit, onDelete, index, color, }:{ item: Integration; onEdit:()=>void; onDelete:()=>void; index?: number; color?: string; }){
 
-  const bgColor = color ?? pickBgColor(index, String(item.id ?? item.name ?? ""));
+  const bgColor = color ?? pickColorForIntegration(item, index);
 
   return (
     <Card
@@ -39,7 +17,7 @@ export default function IntegrationCard({ item, onEdit, onDelete, index, color, 
       display: "flex",
       flexDirection: "column",
       bgcolor: bgColor,
-      width: 238,
+      width: 280,
       height: 90,
       boxShadow: 2,
       border: "none",

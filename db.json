@@ -1,0 +1,44 @@
+{
+  "integrations": [
+    {
+      "id": "1",
+      "name": "A52_Buscar_Viagens",
+      "documentType": "A52_Viagens",
+      "everyMinutes": 3,
+      "stageStart": "1",
+      "stageEnd": "3"
+    },
+    {
+      "id": "2",
+      "name": "A52_Buscar_Entregas",
+      "documentType": "A52_Entregas",
+      "everyMinutes": 30,
+      "stageStart": "3",
+      "stageEnd": "5"
+    },
+    {
+      "id": "fc01",
+      "name": "A52_Buscar_Entregas_Viagens",
+      "documentType": "A52_Viagens",
+      "everyMinutes": 12,
+      "stageStart": "5",
+      "stageEnd": "7"
+    },
+    {
+      "id": "160f",
+      "name": "A52_Cadastrar_Viagens",
+      "documentType": "A52_Viagens",
+      "everyMinutes": 5,
+      "stageStart": "5",
+      "stageEnd": "7"
+    },
+    {
+      "id": "3e89",
+      "name": "A52_Cadastrar_Viagens",
+      "documentType": "A52_Viagens",
+      "everyMinutes": 5,
+      "stageStart": "5",
+      "stageEnd": "7"
+    }
+  ]
+}
