@@ -3,8 +3,34 @@ import { Card, CardContent, CardActions, Typography, IconButton, Stack, Box } fr
 import { Integration } from "@/types/integration";
 import { PencilSimpleIcon, XIcon } from "@phosphor-icons/react";
 
+const palette = [
+  "#89C08E", 
+  "#209E91", 
+  "#05668D", 
+  "#6497C6", 
+  "#213E52",  
+];
 
-export default function IntegrationCard({ item, onEdit, onDelete }:{ item: Integration; onEdit:()=>void; onDelete:()=>void }){
+function hashKey(key: string) {
+  let h = 0;
+  for (let i = 0; i < key.length; i++) h = (h << 5) - h + key.charCodeAt(i);
+  return Math.abs(h);
+}
+
+function pickBgColor(index?: number, stableKey?: string) {
+  if (typeof index === "number") {
+    return palette[index % palette.length];
+  }
+  const key = stableKey ?? Math.random().toString();
+  return palette[hashKey(key) % palette.length];
+}
+
+
+
+export default function IntegrationCard({ item, onEdit, onDelete, index, color, }:{ item: Integration; onEdit:()=>void; onDelete:()=>void; index?: number; color?: string; }){
+
+  const bgColor = color ?? pickBgColor(index, String(item.id ?? item.name ?? ""));
+
   return (
     <Card
     variant="outlined"
@@ -12,7 +38,7 @@ export default function IntegrationCard({ item, onEdit, onDelete }:{ item: Integ
       position: "relative",
       display: "flex",
       flexDirection: "column",
-      bgcolor: "#89C08E",
+      bgcolor: bgColor,
       width: 238,
       height: 90,
       boxShadow: 2,
