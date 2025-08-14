@@ -1,5 +1,5 @@
 "use client";
-import { Card, CardContent, CardActions, Typography, IconButton, Stack, Box } from "@mui/material";
+import { Card, CardContent, CardActions, Typography, Box } from "@mui/material";
 import { Integration } from "@/types/integration";
 import { PencilSimpleIcon, XIcon } from "@phosphor-icons/react";
 
