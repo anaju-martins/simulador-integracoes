@@ -48,7 +48,7 @@ export default function MinuteSlot({
 
       <Stack direction="row" spacing={3} useFlexGap flexWrap="wrap" sx={{ flex: 1 }}>
         {items.map((it, i) => (
-          <Pill key={`${time}-${it.id ?? it.name}-${i}`} label={it.name} color={pickColorForIntegration(it, i)} />
+          <Pill key={`${time}-${it.id ?? it.name}`} label={it.name} color={it.color ?? pickColorForIntegration(it)} />
         ))}
       </Stack>
     </Stack>

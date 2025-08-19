@@ -7,4 +7,5 @@ export interface Integration {
 
   stageStart: string;
   stageEnd: string;
+  color?: string;
 }

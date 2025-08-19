@@ -6,7 +6,8 @@
       "documentType": "A52_Viagens",
       "everyMinutes": 3,
       "stageStart": "1",
-      "stageEnd": "3"
+      "stageEnd": "3",
+      "color": "#05668D"
     },
     {
       "id": "2",
@@ -14,31 +15,35 @@
       "documentType": "A52_Entregas",
       "everyMinutes": 30,
       "stageStart": "3",
-      "stageEnd": "5"
+      "stageEnd": "5",
+      "color": "#209E91"
     },
     {
-      "id": "fc01",
-      "name": "A52_Buscar_Entregas_Viagens",
+      "id": "abf4",
+      "name": "A52_Cadastrar_Entrega",
+      "documentType": "A52_Entregas",
+      "everyMinutes": 7,
+      "stageStart": "1",
+      "stageEnd": "3",
+      "color": "#89C08E"
+    },
+    {
+      "id": "14ab",
+      "name": "A52_Cadastrar_Viagens",
       "documentType": "A52_Viagens",
       "everyMinutes": 12,
       "stageStart": "5",
-      "stageEnd": "7"
+      "stageEnd": "7",
+      "color": "#209E91"
     },
     {
-      "id": "160f",
-      "name": "A52_Cadastrar_Viagens",
+      "id": "18da",
+      "name": "A52_Buscar_Entregas_Viagens",
       "documentType": "A52_Viagens",
-      "everyMinutes": 5,
-      "stageStart": "5",
-      "stageEnd": "7"
-    },
-    {
-      "id": "3e89",
-      "name": "A52_Cadastrar_Viagens",
-      "documentType": "A52_Viagens",
-      "everyMinutes": 5,
-      "stageStart": "5",
-      "stageEnd": "7"
+      "everyMinutes": 3,
+      "stageStart": "6",
+      "stageEnd": "9",
+      "color": "#05668D"
     }
   ]
 }

@@ -28,5 +28,5 @@ export function pickColorForIntegration(
   index?: number
 ): string {
   const stable = String(integ.id ?? integ.name ?? "");
-  return pickBgColor(index, stable);
+  return pickBgColor(undefined, stable);
 }

@@ -9,6 +9,7 @@ import { useForm, Controller } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Integration } from "@/types/integration";
+import { XIcon } from "@phosphor-icons/react";
 
 const schema = z.object({
   name: z.string().min(3, "Campo Obrigatório"),
@@ -60,24 +61,13 @@ export default function IntegrationModal({
   });
 
   useEffect(() => {
-    if (initial) {
-      reset({
-        name: initial.name,
-        documentType: initial.documentType,
-        everyMinutes: initial.everyMinutes ?? 60,
-        stageStart: initial.stageStart,
-        stageEnd: initial.stageEnd,
-      });
-    } else {
-      reset({
-        name: "",
-        documentType: "",
-        everyMinutes: 5,
-        stageStart: "",
-        stageEnd: "",
-      });
-    }
-  }, [initial, reset]);
+    reset(
+      initial
+        ? { name: initial.name, documentType: initial.documentType, everyMinutes: initial.everyMinutes ?? 60, stageStart: initial.stageStart, stageEnd: initial.stageEnd }
+        : { name: "", documentType: "", everyMinutes: 5, stageStart: "", stageEnd: "" }
+    );
+  }, [open, initial, reset]);
+
 
   const inputSx = {
     "& .MuiOutlinedInput-root": {
@@ -118,6 +108,28 @@ export default function IntegrationModal({
       sx={{ "& .MuiDialog-paper": { width: 384, borderRadius: 2, py: 1 } }}
     >
       <form onSubmit={handleSubmit(handleFormSubmit)}>
+        <DialogActions>
+           <Box
+            onClick={onClose}
+            sx={{
+              cursor: "pointer",
+              width: 28,
+              height: 28,
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              borderRadius: "50%",
+              transition: "background 0.2s ease, transform 0.15s ease",
+              "&:hover": {
+                backgroundColor: "rgba(255, 255, 255, 0.2)",
+                transform: "scale(1.2)"
+              },
+            }}
+          >
+            <XIcon size={18} color="#707070" weight="bold" />
+          </Box>
+        </DialogActions>
+       
         <DialogContent sx={{ pb: 0 }}>
           <Grid container spacing={1.5}>
             <Grid size={{ xs: 12 }}>

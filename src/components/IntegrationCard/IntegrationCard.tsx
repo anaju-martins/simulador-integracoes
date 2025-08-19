@@ -5,25 +5,25 @@ import { PencilSimpleIcon, XIcon } from "@phosphor-icons/react";
 import { pickColorForIntegration } from "@/lib/colors";
 
 
-export default function IntegrationCard({ item, onEdit, onDelete, index, color, }:{ item: Integration; onEdit:()=>void; onDelete:()=>void; index?: number; color?: string; }){
+export default function IntegrationCard({ item, onEdit, onDelete, color, }: { item: Integration; onEdit: () => void; onDelete: () => void; index?: number; color?: string; }) {
 
-  const bgColor = color ?? pickColorForIntegration(item, index);
+  const bgColor = item.color ?? pickColorForIntegration(item);
 
   return (
     <Card
-    variant="outlined"
-    sx={{
-      position: "relative",
-      display: "flex",
-      flexDirection: "column",
-      bgcolor: bgColor,
-      width: 280,
-      height: 90,
-      boxShadow: 2,
-      border: "none",
-      borderRadius: 2,
-    }}
-  >
+      variant="outlined"
+      sx={{
+        position: "relative",
+        display: "flex",
+        flexDirection: "column",
+        bgcolor: bgColor,
+        width: 280,
+        height: 90,
+        boxShadow: 2,
+        border: "none",
+        borderRadius: 2,
+      }}
+    >
       {/* Ações no topo */}
       <Box
         sx={{
@@ -50,7 +50,7 @@ export default function IntegrationCard({ item, onEdit, onDelete, index, color, 
               backgroundColor: "rgba(255, 255, 255, 0.2)",
               transform: "scale(1.2)"
             },
-            
+
           }}
         >
           <PencilSimpleIcon size={18} color="white" weight="bold" />
@@ -78,27 +78,27 @@ export default function IntegrationCard({ item, onEdit, onDelete, index, color, 
         </Box>
       </Box>
 
-    <CardContent sx={{
-      display: "flex",
-      flexDirection: "column",
-      height: "100%",
-      pb: "4px", // padding inferior ajustado
-    }}>
-      <Typography fontSize="12px" fontWeight={600} color="white">
-        {item.name}
-      </Typography>
-      <Typography variant="body2" fontSize="10px" color="white">
-        TD: {item.documentType}
-      </Typography>
-      {/* Força o conteúdo para baixo */}
-      <Typography variant="body2"
-      fontSize="12px"
-      fontWeight={600}
-      color="white"
-      sx={{ mt: "auto", paddingTop: "10px" }}>
-        {item.stageStart} → {item.stageEnd}
-      </Typography>
-    </CardContent>
-  </Card>
+      <CardContent sx={{
+        display: "flex",
+        flexDirection: "column",
+        height: "100%",
+        pb: "4px", // padding inferior ajustado
+      }}>
+        <Typography fontSize="12px" fontWeight={600} color="white">
+          {item.name}
+        </Typography>
+        <Typography variant="body2" fontSize="10px" color="white">
+          TD: {item.documentType}
+        </Typography>
+        {/* Força o conteúdo para baixo */}
+        <Typography variant="body2"
+          fontSize="12px"
+          fontWeight={600}
+          color="white"
+          sx={{ mt: "auto", paddingTop: "10px" }}>
+          {item.stageStart} → {item.stageEnd}
+        </Typography>
+      </CardContent>
+    </Card>
   );
 }
