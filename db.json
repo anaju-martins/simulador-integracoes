@@ -1,40 +1,31 @@
 {
   "integrations": [
     {
-      "id": "1",
-      "name": "A52_Buscar_Viagens",
-      "documentType": "A52_Viagens",
-      "everyMinutes": 3,
-      "stageStart": "1",
-      "stageEnd": "3",
-      "color": "#05668D"
-    },
-    {
-      "id": "2",
-      "name": "A52_Buscar_Entregas",
-      "documentType": "A52_Entregas",
-      "everyMinutes": 30,
-      "stageStart": "3",
-      "stageEnd": "5",
-      "color": "#209E91"
-    },
-    {
-      "id": "abf4",
-      "name": "A52_Cadastrar_Entrega",
-      "documentType": "A52_Entregas",
-      "everyMinutes": 7,
+      "id": "b45d",
+      "name": "Buscar ",
+      "documentType": "Notas",
+      "everyMinutes": 5,
       "stageStart": "1",
       "stageEnd": "3",
       "color": "#89C08E"
     },
     {
-      "id": "14ab",
-      "name": "A52_Cadastrar_Viagens",
-      "documentType": "A52_Viagens",
-      "everyMinutes": 12,
+      "id": "0bc1",
+      "name": "Cadastrar",
+      "documentType": "Notas",
+      "everyMinutes": 10,
+      "stageStart": "3",
+      "stageEnd": "5",
+      "color": "#209E91"
+    },
+    {
+      "id": "fd6b",
+      "name": "Notificar",
+      "documentType": "Notas",
+      "everyMinutes": 15,
       "stageStart": "5",
       "stageEnd": "7",
-      "color": "#209E91"
+      "color": "#6497C6"
     }
   ]
 }

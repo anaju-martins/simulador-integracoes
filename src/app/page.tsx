@@ -35,8 +35,7 @@ export default function Page() {
   function onSubmitIntegration(data: Integration) {
   const payload = {
     ...data,
-    id: editing?.id ?? data.id,         // garante id no update
-    color: data.color ?? "#89C08E",     // DEFAULT para color
+    id: editing?.id ?? data.id,         
   };
 
   if (editing?.id) updateMut.mutate(payload as Required<Integration>);
@@ -46,7 +45,6 @@ export default function Page() {
 }
 
   return (
-    // ROOT: layout em largura/altura totais
     <Box sx={{ display: "flex", width: "100vw", height: "100vh", overflow: "hidden" }}>
       {/* Sidebar fixa */}
       <Drawer
@@ -75,11 +73,12 @@ export default function Page() {
               alignItems: "center",
             }}
           >
-            <img
+            <Typography variant="h5" fontWeight={800} fontSize={30} color="#14374E">Logo </Typography>
+            {/* <img
               src="/images/logoBalm.png" 
               alt="Logo"
               style={{ maxWidth: "100%", maxHeight: "100%", objectFit: "contain" }}
-            />
+            /> */}
           </Box>
           
           <Button variant="contained" onClick={onNew} sx={{ bgcolor:"#4DAA2A", borderRadius: 10, width:"242px", height:"59px", fontSize: "20px", fontWeight: 600, justifyContent:"center", }}>+ Adicionar</Button>

@@ -32,7 +32,7 @@ export default function IntegrationCard({ item, onEdit, onDelete, color, }: { it
         flexDirection: "column",
         bgcolor: bgColor,
         width: 280,
-        height: 90,
+        height: 110,
         boxShadow: 2,
         border: "none",
         borderRadius: 2,
@@ -98,7 +98,13 @@ export default function IntegrationCard({ item, onEdit, onDelete, color, }: { it
         height: "100%",
         pb: "4px", // padding inferior ajustado
       }}>
-        <Typography fontSize="12px" fontWeight={600} color="white">
+        <Typography fontSize="12px" fontWeight={600} color="white" sx={{
+          maxWidth: 180,          
+          whiteSpace: 'normal',   
+          overflowWrap: 'anywhere', 
+          wordBreak: 'break-word',  
+          minWidth: 0,
+        }}>
           {item.name}
         </Typography>
         <Typography variant="body2" fontSize="10px" color="white">
