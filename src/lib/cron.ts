@@ -21,3 +21,14 @@ export function occurrencesBetweenEveryMinutes(
   }
   return out;
 }
+
+export function cronEveryMinutes(n: number): string {
+  if (!Number.isFinite(n) || !Number.isInteger(n)) {
+    throw new TypeError("n deve ser um inteiro.");
+  }
+  if (n < 1) throw new RangeError("n deve ser >= 1.");
+  if (n === 1) return "* * * * *";   // a cada minuto
+  if (n === 60) return "0 * * * *";  // de hora em hora, no minuto 0
+  if (n > 59) throw new RangeError("use 1..59 (ou 60)");
+  return `*/${n} * * * *`;
+}

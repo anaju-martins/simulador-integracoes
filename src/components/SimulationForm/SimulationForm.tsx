@@ -15,7 +15,7 @@ export default function SimulationForm({ onGenerate }:{ onGenerate:(data: Simula
     resolver: zodResolver(schema),
     defaultValues: {
       start: "",
-      durationMinutes: 10,
+      durationMinutes: 60,
     },
     
   });

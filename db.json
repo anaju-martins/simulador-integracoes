@@ -35,15 +35,6 @@
       "stageStart": "5",
       "stageEnd": "7",
       "color": "#209E91"
-    },
-    {
-      "id": "18da",
-      "name": "A52_Buscar_Entregas_Viagens",
-      "documentType": "A52_Viagens",
-      "everyMinutes": 3,
-      "stageStart": "6",
-      "stageEnd": "9",
-      "color": "#05668D"
     }
   ]
 }

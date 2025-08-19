@@ -17,7 +17,7 @@ export function useCreateIntegration() {
   const qc = useQueryClient();
   return useMutation({
     mutationFn: async (payload: Integration) => {
-      // Se não veio cor do form, gera e persiste:
+      // Se não veio cor do form, gera e persiste
       const withColor: Integration = {
         ...payload,
         color: payload.color ?? pickColorForIntegration(payload),

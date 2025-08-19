@@ -90,7 +90,7 @@ export default function IntegrationModal({
   // Converte FormData -> Integration antes de disparar pro pai
   const handleFormSubmit = (data: FormData) => {
     const payload: Integration = {
-      id: initial?.id, // preserva id se estiver editando
+      id: initial?.id, 
       name: data.name,
       documentType: data.documentType,
       everyMinutes: data.everyMinutes,

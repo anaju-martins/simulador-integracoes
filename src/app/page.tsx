@@ -33,10 +33,17 @@ export default function Page() {
   function onEdit(item: Integration) { setEditing(item); setOpen(true); }
   function onDelete(id?: number) { if (!id) return; if (confirm("Excluir integração?")) deleteMut.mutate(id); }
   function onSubmitIntegration(data: Integration) {
-    if (editing?.id) updateMut.mutate({ ...data, id: editing.id });
-    else createMut.mutate(data);
-    setOpen(false);
-  }
+  const payload = {
+    ...data,
+    id: editing?.id ?? data.id,         // garante id no update
+    color: data.color ?? "#89C08E",     // DEFAULT para color
+  };
+
+  if (editing?.id) updateMut.mutate(payload as Required<Integration>);
+  else createMut.mutate(payload);
+
+  setOpen(false);
+}
 
   return (
     // ROOT: layout em largura/altura totais
@@ -70,7 +77,7 @@ export default function Page() {
           >
             <img
               src="/images/logoBalm.png" 
-              alt="Minha imagem"
+              alt="Logo"
               style={{ maxWidth: "100%", maxHeight: "100%", objectFit: "contain" }}
             />
           </Box>
