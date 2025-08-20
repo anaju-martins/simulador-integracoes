@@ -14,6 +14,7 @@ import IntegrationCard from "@/components/IntegrationCard/IntegrationCard";
 import Timeline from "@/components/Timeline/Timeline";
 import IntegrationModal from "@/components/IntegrationModal/IntegrationModal";
 import Header from "@/components/Header/Header";
+import { pickColorForIntegration } from "@/lib/colors";
 
 export default function Page() {
   const { data: integrations } = useIntegrations();
@@ -25,7 +26,6 @@ export default function Page() {
   const [editing, setEditing] = useState<Integration | null>(null);
   const [simInput, setSimInput] = useState<SimulationInput | null>(null);
 
-  // novo estado para confirmar exclusão
   const [deleteId, setDeleteId] = useState<number | null>(null);
 
   const timeline = useTimeline(
@@ -43,11 +43,28 @@ export default function Page() {
   }
 
   function onSubmitIntegration(data: Integration) {
-    const payload = { ...data, id: editing?.id ?? data.id };
-    if (editing?.id) updateMut.mutate(payload as Required<Integration>);
-    else createMut.mutate(payload);
-    setOpen(false);
+  if (editing?.id) {
+    // ✅ caminho de UPDATE: garante id definido e preserva a cor existente
+    const payload: Required<Integration> = {
+      ...editing,          // preserva color e demais campos atuais
+      ...data,             // aplica alterações do formulário
+      id: editing.id,      // garante number
+      color: editing.color ?? data.color, // (opcional) manter cor antiga
+    };
+
+    updateMut.mutate(payload); // agora bate com Required<Integration>
+  } else {
+    // ✅ caminho de CREATE: define a cor uma única vez
+    const payload: Integration = {
+      ...data,
+      color: data.color ?? pickColorForIntegration(data),
+    };
+    createMut.mutate(payload);
   }
+
+  setOpen(false);
+}
+
 
   function handleConfirmDelete() {
     if (deleteId == null) return;
@@ -153,7 +170,7 @@ export default function Page() {
         onClose={handleCancelDelete}
         aria-labelledby="delete-confirm-title"
       >
-        <DialogTitle id="delete-confirm-title">Excluir integração?</DialogTitle>
+        <DialogTitle id="delete-confirm-title">Excluir tarefa?</DialogTitle>
         <DialogContent>
           {/* <DialogContentText>
             Esta ação não pode ser desfeita. Deseja realmente excluir a integração selecionada?

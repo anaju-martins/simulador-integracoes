@@ -11,7 +11,8 @@ import { useState } from "react";
 export default function IntegrationCard({ item, onEdit, onDelete, color, }: { item: Integration; onEdit: () => void; onDelete: () => void; index?: number; color?: string; }) {
 
   const [snackOpen, setSnackOpen] = useState(false);
-  const bgColor = item.color ?? pickColorForIntegration(item);
+  const [bgColor] = useState(() => color ?? item.color ?? pickColorForIntegration(item));
+
 
   async function handleCopyCron() {
     try {

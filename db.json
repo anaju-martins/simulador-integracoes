@@ -8,15 +8,6 @@
       "stageStart": "1",
       "stageEnd": "3",
       "color": "#6497C6"
-    },
-    {
-      "id": "d4d9",
-      "name": "Notificar",
-      "documentType": "Notas",
-      "everyMinutes": 10,
-      "stageStart": "5",
-      "stageEnd": "7",
-      "color": "#213E52"
     }
   ]
 }
