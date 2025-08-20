@@ -63,23 +63,8 @@ export default function Page() {
           },
         }}
       >
-        <Stack spacing={2} sx={{ height: "100%", justifyItems:"center", alignItems:"center" }}>
-          <Box
-            sx={{
-              width: 200,
-              height: 100,
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-            }}
-          >
-            <Typography variant="h5" fontWeight={800} fontSize={30} color="#14374E">Logo </Typography>
-            {/* <img
-              src="/images/logoBalm.png" 
-              alt="Logo"
-              style={{ maxWidth: "100%", maxHeight: "100%", objectFit: "contain" }}
-            /> */}
-          </Box>
+        <Stack spacing={2} sx={{ height: "100%", justifyItems:"center", alignItems:"center", pt: 2 }}>
+         
           
           <Button variant="contained" onClick={onNew} sx={{ bgcolor:"#4DAA2A", borderRadius: 10, width:"242px", height:"59px", fontSize: "20px", fontWeight: 600, justifyContent:"center", }}>+ Adicionar</Button>
 

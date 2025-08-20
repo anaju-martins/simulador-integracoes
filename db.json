@@ -17,15 +17,6 @@
       "stageStart": "3",
       "stageEnd": "5",
       "color": "#209E91"
-    },
-    {
-      "id": "fd6b",
-      "name": "Notificar",
-      "documentType": "Notas",
-      "everyMinutes": 15,
-      "stageStart": "5",
-      "stageEnd": "7",
-      "color": "#6497C6"
     }
   ]
 }
