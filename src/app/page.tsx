@@ -1,7 +1,8 @@
 "use client";
 import { useState } from "react";
 import {
-  Box, Button, Divider, Drawer, Stack, Typography
+  Box, Button, Divider, Drawer, Stack, Typography,
+  Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions
 } from "@mui/material";
 import { Integration } from "@/types/integration";
 import {
@@ -23,6 +24,10 @@ export default function Page() {
   const [open, setOpen] = useState(false);
   const [editing, setEditing] = useState<Integration | null>(null);
   const [simInput, setSimInput] = useState<SimulationInput | null>(null);
+
+  // novo estado para confirmar exclusão
+  const [deleteId, setDeleteId] = useState<number | null>(null);
+
   const timeline = useTimeline(
     integrations,
     simInput?.start?.toString?.() ?? "",
@@ -31,18 +36,29 @@ export default function Page() {
 
   function onNew() { setEditing(null); setOpen(true); }
   function onEdit(item: Integration) { setEditing(item); setOpen(true); }
-  function onDelete(id?: number) { if (!id) return; if (confirm("Excluir integração?")) deleteMut.mutate(id); }
+
+  function onDelete(id?: number) {
+    if (!id) return;
+    setDeleteId(id);
+  }
+
   function onSubmitIntegration(data: Integration) {
-  const payload = {
-    ...data,
-    id: editing?.id ?? data.id,         
-  };
+    const payload = { ...data, id: editing?.id ?? data.id };
+    if (editing?.id) updateMut.mutate(payload as Required<Integration>);
+    else createMut.mutate(payload);
+    setOpen(false);
+  }
 
-  if (editing?.id) updateMut.mutate(payload as Required<Integration>);
-  else createMut.mutate(payload);
-
-  setOpen(false);
-}
+  function handleConfirmDelete() {
+    if (deleteId == null) return;
+    deleteMut.mutate(deleteId, {
+      onSettled: () => setDeleteId(null),
+    });
+  }
+  function handleCancelDelete() {
+    if (deleteMut.isPending) return; 
+    setDeleteId(null);
+  }
 
   return (
     <Box sx={{ display: "flex", width: "100vw", height: "100vh", overflow: "hidden" }}>
@@ -58,25 +74,33 @@ export default function Page() {
             width: 320,
             boxSizing: "border-box",
             p: 2,
-            height: "100vh", 
+            height: "100vh",
             bgcolor: "#F5F5F5",
           },
         }}
       >
         <Stack spacing={2} sx={{ height: "100%", justifyItems:"center", alignItems:"center", pt: 2 }}>
-         
-          
-          <Button variant="contained" onClick={onNew} sx={{ bgcolor:"#4DAA2A", borderRadius: 10, width:"242px", height:"59px", fontSize: "20px", fontWeight: 600, justifyContent:"center", }}>+ Adicionar</Button>
+          <Button
+            variant="contained"
+            onClick={onNew}
+            sx={{ bgcolor:"#4DAA2A", borderRadius: 10, width:"242px", height:"59px", fontSize: "20px", fontWeight: 600, justifyContent:"center" }}
+          >
+            + Adicionar
+          </Button>
 
           <Box>
-            <Typography variant="subtitle2" gutterBottom marginTop={3} sx={{color:"#787878", fontWeight: 600}}>CONTROLE DE SIMULAÇÃO</Typography>
+            <Typography variant="subtitle2" gutterBottom marginTop={3} sx={{color:"#787878", fontWeight: 600}}>
+              CONTROLE DE SIMULAÇÃO
+            </Typography>
             <SimulationForm onGenerate={setSimInput} />
           </Box>
 
           <Divider />
 
           <Box sx={{ overflow: "auto" }}>
-            <Typography variant="subtitle2" gutterBottom sx={{color:"#787878", fontWeight: 600}}>INTEGRAÇÕES</Typography>
+            <Typography variant="subtitle2" gutterBottom sx={{color:"#787878", fontWeight: 600}}>
+              INTEGRAÇÕES
+            </Typography>
             <Stack spacing={1}>
               {integrations?.map((it) => (
                 <IntegrationCard
@@ -91,16 +115,16 @@ export default function Page() {
         </Stack>
       </Drawer>
 
-      {/* MAIN: preenche o resto da tela */}
+      {/* MAIN */}
       <Box
         component="main"
         sx={{
-          flex: 1,               // ocupa o espaço restante
-          minWidth: 0,           // evita overflow horizontal
+          flex: 1,
+          minWidth: 0,
           height: "100%",
           display: "flex",
           flexDirection: "column",
-          overflow: "hidden",    // Header fixo + conteúdo rolável
+          overflow: "hidden",
         }}
       >
         <Header />
@@ -122,6 +146,33 @@ export default function Page() {
         onClose={() => setOpen(false)}
         onSubmit={onSubmitIntegration}
       />
+
+      {/* Modal de confirmação de exclusão */}
+      <Dialog
+        open={deleteId !== null}
+        onClose={handleCancelDelete}
+        aria-labelledby="delete-confirm-title"
+      >
+        <DialogTitle id="delete-confirm-title">Excluir integração?</DialogTitle>
+        <DialogContent>
+          {/* <DialogContentText>
+            Esta ação não pode ser desfeita. Deseja realmente excluir a integração selecionada?
+          </DialogContentText> */}
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleCancelDelete} disabled={deleteMut.isPending} sx={{ color:"#787878"}}>
+            Cancelar
+          </Button>
+          <Button
+            variant="contained"
+            color="error"
+            onClick={handleConfirmDelete}
+            disabled={deleteMut.isPending}
+          >
+            {deleteMut.isPending ? "Excluindo..." : "Excluir"}
+          </Button>
+        </DialogActions>
+      </Dialog>
     </Box>
   );
 }

@@ -4,19 +4,19 @@
       "id": "b45d",
       "name": "Buscar ",
       "documentType": "Notas",
-      "everyMinutes": 5,
+      "everyMinutes": 7,
       "stageStart": "1",
       "stageEnd": "3",
-      "color": "#89C08E"
+      "color": "#6497C6"
     },
     {
-      "id": "0bc1",
-      "name": "Cadastrar",
+      "id": "d4d9",
+      "name": "Notificar",
       "documentType": "Notas",
       "everyMinutes": 10,
-      "stageStart": "3",
-      "stageEnd": "5",
-      "color": "#209E91"
+      "stageStart": "5",
+      "stageEnd": "7",
+      "color": "#213E52"
     }
   ]
 }
